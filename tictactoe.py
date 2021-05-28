@@ -1,14 +1,14 @@
 player = ''
 gameover = False
-row1 = ['', '', '']
-row2 = ['', '', '']
-row3 = ['', '', '']
+row1 = [' ', ' ', ' ']
+row2 = [' ', ' ', ' ']
+row3 = [' ', ' ', ' ']
 
 
 def display_board():
-    print(row1)
-    print(row2)
-    print(row3)
+    print(f'{row1[0]}|{row1[1]}|{row1[2]}')
+    print(f'{row2[0]}|{row2[1]}|{row2[2]}')
+    print(f'{row3[0]}|{row3[1]}|{row3[2]}')
 
 
 def new_game():
@@ -28,7 +28,7 @@ def pick():
             if choice in range(1, 10):
                 row = get_row(choice)
                 position = (choice-1) % 3
-                if row[position] == '':
+                if row[position] == ' ':
                     row[position] = player
                     break
                 else:
