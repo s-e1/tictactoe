@@ -1,17 +1,15 @@
-player = ''
-gameover = False
-row1 = [' ', ' ', ' ']
-row2 = [' ', ' ', ' ']
-row3 = [' ', ' ', ' ']
+def initial_values():
+    global player
+    global row1
+    global row2
+    global row3
+    player = ''
+    row1 = [' '] * 3
+    row2 = [' '] * 3
+    row3 = [' '] * 3
 
 
-def display_board():
-    print(f'{row1[0]}|{row1[1]}|{row1[2]}')
-    print(f'{row2[0]}|{row2[1]}|{row2[2]}')
-    print(f'{row3[0]}|{row3[1]}|{row3[2]}')
-
-
-def new_game():
+def choose_token():
     global player
     while True:
         choice = input('choose X or O: \n')
@@ -44,8 +42,18 @@ def get_row(num):
         return row3
 
 
+def display_board():
+    print(f'{row1[0]}|{row1[1]}|{row1[2]}')
+    print(f'{row2[0]}|{row2[1]}|{row2[2]}')
+    print(f'{row3[0]}|{row3[1]}|{row3[2]}')
+
+
+def switch_player():
+    global player
+    player = 'x' if player == 'o' else 'o'
+
+
 def iswinner():
-    global gameover
     if row1[0] == player and row1[1] == player and row1[2] == player \
             or row2[0] == player and row2[1] == player and row2[2] == player \
             or row3[0] == player and row3[1] == player and row3[2] == player\
@@ -54,16 +62,32 @@ def iswinner():
             or row1[2] == player and row2[2] == player and row3[2] == player\
             or row1[0] == player and row2[1] == player and row3[2] == player\
             or row1[2] == player and row2[1] == player and row3[0] == player:
-        gameover = True
         print(player + ' is the winner')
+        another_game()
+    elif row1[0] != ' ' and row1[1] != ' ' and row1[2] != ' ' \
+            and row2[0] != ' ' and row2[1] != ' ' and row2[2] != ' ' \
+            and row3[0] != ' ' and row3[1] != ' ' and row3[2] != ' ':
+        print('It is a tie')
+        another_game()
 
 
-def switch_player():
-    global player
-    player = 'x' if player == 'o' else 'o'
+def another_game():
+    while True:
+        res = input('Do you want to play another game (y,n)? \n')
+        if res in ['y', 'n']:
+            if res == 'y':
+                initial_values()
+                choose_token()
+                break
+            else:
+                global gameover
+                gameover = True
+                break
 
 
-new_game()
+gameover = False
+initial_values()
+choose_token()
 while not gameover:
     pick()
     display_board()
