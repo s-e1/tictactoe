@@ -54,14 +54,14 @@ def switch_player():
 
 
 def iswinner():
-    if row1[0] == player and row1[1] == player and row1[2] == player \
-            or row2[0] == player and row2[1] == player and row2[2] == player \
-            or row3[0] == player and row3[1] == player and row3[2] == player\
-            or row1[0] == player and row2[0] == player and row3[0] == player \
-            or row1[1] == player and row2[1] == player and row3[1] == player \
-            or row1[2] == player and row2[2] == player and row3[2] == player\
-            or row1[0] == player and row2[1] == player and row3[2] == player\
-            or row1[2] == player and row2[1] == player and row3[0] == player:
+    if player == row1[0] == row1[1] == row1[2] \
+            or player == row2[0] == row2[1] == row2[2] \
+            or player == row3[0] == row3[1] == row3[2] \
+            or player == row1[0] == row2[0] == row3[0]  \
+            or player == row1[1] == row2[1] == row3[1]  \
+            or player == row1[2] == row2[2] == row3[2] \
+            or player == row1[0] == row2[1] == row3[2] \
+            or player == row1[2] == row2[1] == row3[0]:
         print(player + ' is the winner')
         another_game()
     elif row1[0] != ' ' and row1[1] != ' ' and row1[2] != ' ' \
